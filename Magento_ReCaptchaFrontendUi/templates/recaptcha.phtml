@@ -1,0 +1,49 @@
+<?php
+
+declare(strict_types=1);
+
+/** @var $block \Magento\ReCaptchaUi\Block\ReCaptcha */
+?>
+
+<?php $lazyInit = ('catalog_product_view' == $block->getRequest()->getFullActionName()) ? '-lazy' : ''; ?>
+<div
+    class="field-recaptcha"
+    id="<?= /* @noEscape */ $block->getRecaptchaId() ?>-container"
+    data-bind="scope:'<?= /* @noEscape */ $block->getRecaptchaId() ?>'"
+    data-mage-init<?= $lazyInit ?>='{"Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout()?>}'>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<?php if ($lazyInit) { ?>
+
+<script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', (event) => {
+        let reviewRecaptcha =  document.querySelector('.review-add .field-recaptcha');
+
+        if (reviewRecaptcha) {
+            if (window.location.hash.includes('review')) {
+                initRecaptcha();
+            } else {
+                document.querySelector('.product-info-main .reviews-actions a').addEventListener('click', initRecaptcha);
+                document.querySelector('.product.info.detailed').addEventListener('click', initRecaptcha);
+            }
+
+            function initRecaptcha() {
+                document.querySelector('.product-info-main .reviews-actions a').removeEventListener('click', initRecaptcha);
+                document.querySelector('.product.info.detailed').removeEventListener('click', initRecaptcha);
+                
+                reviewRecaptcha.setAttribute('data-mage-init', reviewRecaptcha.getAttribute('data-mage-init-lazy'));
+                reviewRecaptcha.removeAttribute('data-mage-init-lazy');
+
+                require(['mage/apply/main'], function (mage) {
+                    if (mage) {
+                        mage.apply();
+                    }
+                });
+            }
+        }
+    });
+</script>
+
+
+<?php } ?>

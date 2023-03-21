@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+
+
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+?>
+<link  rel="stylesheet" type="text/css"  media="print" href="<?= $block->getViewFileUrl('css/print.css') ?>" />
+<?php $scriptString = <<<script
+
+    require(
+        [
+            'jquery'
+        ],
+        function($) {
+            $(function() {
+                window.print();
+            });
+        }
+    );
+
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>

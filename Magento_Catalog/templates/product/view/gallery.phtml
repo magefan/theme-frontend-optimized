@@ -1,0 +1,302 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+ 
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<?php
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+    return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+    $mainImage = $block->getGalleryImages()->getFirstItem();
+}
+
+$helper = $block->getData('imageHelper');
+$mainImageData = $mainImage ?
+    $mainImage->getData('medium_image_url') :
+    $helper->getDefaultPlaceholderUrl('image');
+
+$galleryOptionsJson = $block->getGalleryOptions()->getOptionsJson();
+
+$galleryOptions = json_decode($galleryOptionsJson, true);
+
+$width = $galleryOptions['width'];
+$height = $galleryOptions['height'];
+
+?>
+
+<style>
+    /*.product-options-wrapper {
+        display: none;
+    }*/
+</style>
+
+<!--<style>-->
+<!--    .gallery-placeholder img {-->
+<!--        width: 100%;-->
+<!--        height: auto;-->
+<!--        aspect-ratio: attr(width) / attr(height);-->
+<!--    }-->
+<!--</style>-->
+
+
+<link rel="preload" as="image" href="<?= $mainImageData ?>">
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <img
+            alt="main product photo"
+            class="gallery-placeholder__image"
+            src="<?= /* @noEscape */ $mainImageData ?>"
+            height="<?= $height ?>" width="<?= $width ?>"
+    />
+
+    <?php if (count($images) > 1) {
+        $thumbs = [];
+        $j = 1;
+
+        foreach (json_decode($block->getGalleryImagesJson(), true) as $thumbImages) {
+            if ($j > 4 ) {
+                break;
+            }
+
+            $j++;
+
+            $webPUrl = $thumbImages['thumb'];
+            $alt = $thumbImages['caption'];
+
+            if (strpos($webPUrl, 'mf_webp') === false) {
+                $thumbs[] = $thumbImages['thumb'];
+                continue;
+            }
+
+            $array = explode('/', $webPUrl);
+            $imageFormat = '';
+
+            for ($i = 0; $i < count($array); $i++) {
+                if ($array[$i] == "mf_webp") {
+                    $imageFormat = $array[$i + 1];
+                    array_splice($array, $i, 3);
+                    break;
+                }
+            }
+
+            $imageUrl = implode('/', $array);
+
+            $thumbs[] = str_replace('.webp', '.' . $imageFormat, $imageUrl);
+        }
+
+        ?>
+        <div id="thumb-preloaded" class="fotorama__nav-wrap fotorama__nav-wrap--horizontal " data-gallery-role="nav-wrap" style="margin-top: 5px; display: none;">
+            <div class="fotorama__nav fotorama__nav--thumbs " style="height: 94px; width: 100%; margin: 0;" >
+                <div class="fotorama__nav__shaft">
+                    <div class="fotorama__thumb-border" style="width: 90px; height:90px" ></div>
+                    <?php $id = 0; foreach ($thumbs as $thumb) { ?>
+                        <div style="height: 90px; width: 90px; padding-right: 2px;" class="fotorama__nav__frame fotorama__nav__frame--thumb fotorama__active " tabindex="0" role="button" data-gallery-role="nav-frame" data-nav-type="thumb" data-active="true"  >
+                            <div id="thumb-lazy-<?= $id ?>" class="fotorama__thumb fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img " >
+                                <img width="90" height="90" src="<?= $thumb ?>" alt="<?= $alt ?>" class="fotorama__img " aria-hidden="false">
+                            </div>
+                        </div>
+                        <?php $id++;} ?>
+                </div>
+            </div>
+        </div>
+
+        <div id="thumb-preloaded-dots" class="fotorama__nav-wrap fotorama__nav-wrap--horizontal" data-gallery-role="nav-wrap" style="margin-top:10px; display: none;">
+            <div class="fotorama__nav fotorama__nav--dots" style="height: auto; width: 100%;">
+                <div class="fotorama__nav__shaft">
+                    <div class="fotorama__nav__frame fotorama__nav__frame--dot fotorama__active" data-active="true">
+                        <div class="fotorama__dot" dot-index="0"></div>
+                    </div>
+                    <?php
+                    for ($i = 1; $i < $id; $i++) { ?>
+                        <div class="fotorama__nav__frame fotorama__nav__frame--dot">
+                            <div class="fotorama__dot" dot-index="<?= $i ?>"></div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+
+<script type="text/x-magento-init-lazy">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @noEscape */ $block->getMagnifier() ?>,
+                "data": <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
+                "options": <?= /* @noEscape */ $galleryOptionsJson ?>,
+                "fullscreen": <?= /* @noEscape */ $block->getGalleryOptions()->getFSOptionsJson() ?>,
+                 "breakpoints": <?= /* @noEscape */ $block->getBreakpoints() ?>
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    var onece = true,
+        initEventObject,
+        initGallery = function(e, position) {
+            if (!onece) {
+                return;
+            }
+
+            loadCss('<?= $block->getViewFileUrl('Magento_Catalog::css/gallery.css') ?>');
+
+            onece = false;
+            initEventObject = {
+                'event': e,
+                'position': position
+            };
+
+            console.log({initEventObject})
+
+            require(['jquery'], function ($) {
+                $('[data-gallery-role=gallery-placeholder]').on('gallery:loaded', function () {
+                    $('#thumb-preloaded, #thumb-preloaded-dots').remove();
+
+                    console.log('loaded');
+                    console.log({e});
+
+                    if (e != 'none') {
+                        var api = $(this).data('gallery');
+
+                        console.log({initEventObject});
+                        if (initEventObject.position) {
+                            console.log('swipe');
+                            if (initEventObject.position == 'next') {
+                                api.next();
+                            } else {
+                                api.prev();
+                            }
+                        } else {
+                            console.log('click');
+
+                            setTimeout(function () {
+                                if (initEventObject.event.target.classList.contains('gallery-placeholder__image')) {
+                                    api.fotorama.requestFullScreen();
+                                    console.log('full screan')
+                                } else {
+                                    if (initEventObject.event.target.classList.contains('fotorama__dot')) {
+                                        console.log('dot')
+                                        console.log(initEventObject.event.target.getAttribute('dot-index'));
+                                        api.seek(parseInt(initEventObject.event.target.getAttribute('dot-index')) + 1);
+                                    } else {
+                                        console.log('bug')
+                                        api.next();
+                                    }
+                                }
+                            },50);
+                        }
+
+                        $("body").trigger('processStop');
+                    }
+                });
+
+                // init gallery
+                if ($('[type="text/x-magento-init-lazy"]').length) {
+                    $('[type="text/x-magento-init-lazy"]').attr("type", "text/x-magento-init");
+                }
+
+                if ($('script[type="text/x-magento-init"]').length) {
+                    require(['jquery','mage/apply/main'], function ($, mage) {
+                        if (mage) {
+                            $("body").trigger('processStart');
+                            mage.apply('script[type="text/x-magento-init"]');
+
+                            if (e == 'none') {
+                                $("body").trigger('processStop');
+                            }
+                        }
+                    });
+                }
+            });
+        };
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelector('.gallery-placeholder').addEventListener('mousemove', initGallery.bind(event, 'none'), {once : true, passive:true});
+
+        let productOptions = document.querySelector('#product-options-wrapper');
+
+        if (productOptions) {
+            productOptions.addEventListener('mousemove', initGallery.bind(event, 'none'), {once : true});
+        }
+
+        const gestureZone = document.querySelector('.gallery-placeholder');
+        let pageWidth = gestureZone.offsetWidth || document.body.clientWidth;
+        let treshold = Math.max(1,Math.floor(0.05 * (pageWidth)));
+
+        console.log(treshold);
+
+        let touchstartX = 0;
+        let touchstartY = 0;
+        let touchendX = 0;
+        let touchendY = 0;
+
+        gestureZone.addEventListener('touchstart', passTouchstartEvent, {passive : true});
+        gestureZone.addEventListener('touchend', passTouchendEvent, {passive : true});
+
+        function passTouchstartEvent(event) {
+            console.log('touchstart');
+            touchstartX = event.changedTouches[0].screenX;
+            touchstartY = event.changedTouches[0].screenY;
+        }
+
+        function passTouchendEvent(event) {
+            console.log('touchend');
+            touchendX = event.changedTouches[0].screenX;
+            touchendY = event.changedTouches[0].screenY;
+            handleGesture(event);
+        }
+
+        function handleGesture(e) {
+            let x = touchendX - touchstartX;
+            let y = touchendY - touchstartY;
+
+            console.log({x});
+            console.log({y});
+
+            if (Math.abs(x) > treshold && Math.abs(x) > Math.abs(y)) {
+                gestureZone.removeEventListener('touchstart', passTouchstartEvent);
+                gestureZone.removeEventListener('touchend', passTouchendEvent);
+
+                if (x < 0) {
+                    initGallery(e,'next');
+                    console.log("left");
+                } else {
+                    initGallery(e,'prev');
+                    console.log("right");
+                }
+            } else {
+                // we will suppose that this is click
+                if (Math.abs(x) < 5 && Math.abs(y) < 5) {
+                    console.log('else')
+                    gestureZone.removeEventListener('touchstart', passTouchstartEvent);
+                    gestureZone.removeEventListener('touchend', passTouchendEvent);
+                    initGallery(e,false);
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+    @media only screen and (max-width: 767px) {
+        #thumb-preloaded-dots {margin-top: 0 !important; display: block !important;}
+    }
+
+    @media only screen and (min-width: 768px) {
+        #thumb-preloaded {display: block !important;}
+    }
+</style>

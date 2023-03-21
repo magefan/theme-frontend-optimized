@@ -1,0 +1,24 @@
+{
+  "name": "magento/theme-frontend-optimized",
+  "description": "Optimized Magento 2 Theme",
+  "require": {
+    "magefan/module-theme-optimized" : ">=2.0.0",
+    "magefan/module-blog" : ">=2.10.12",
+    "magefan/module-lazyload" : ">=2.0.19",
+    "magefan/module-rocketjavascript" : ">=2.1.6",
+    "magefan/module-translation": ">=2.1.10",
+    "magefan/module-html-sitemap": ">=2.1.0",
+    "magefan/module-xml-sitemap": ">=2.0.0"
+  },
+  "type": "magento2-theme",
+  "license": "EULA",
+  "config": {
+    "sort-packages": true
+  },
+  "version": "2.0.0",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ]
+  }
+}

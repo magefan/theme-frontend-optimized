@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name="footer-container">
+            <container name="top.footer" as="top_footer" label="Footer Top" htmlTag="div" htmlClass="top-footer" before="-">
+                <block class="Magento\Cms\Block\Block" name="block.subscribe" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">subscribe_block</argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <referenceContainer name="footer">
+                <container name="footer.wrapper" as="footer_wrapper" label="Footer Wrapper" htmlTag="div" htmlClass="footer-wrapper" before="-">
+                    <block class="Magento\Cms\Block\Block" name="footer.static.block" after="-">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-static-block</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </referenceContainer>
+
+            <container name="bottom.footer" as="bottom_footer" label="Footer Bottom" htmlTag="div" htmlClass="bottom-footer" after="-"></container>
+        </referenceContainer>
+
+        <referenceContainer name="before.body.end">
+            <block name="magefan.fonts" template="Magento_Theme::fonts.phtml" />
+            <block name="magefan.css.manager" template="Magento_Theme::css_manager.phtml" />
+        </referenceContainer>
+
+        <!-- Remove -->
+        <referenceBlock name="authorization-link" remove="true"/>
+        <referenceBlock name="register-link" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="report.bugs" remove="true"/>
+        <!-- Move -->
+        <move element="copyright" destination="before.body.end"/>
+
+    </body>
+</page>

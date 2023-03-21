@@ -1,0 +1,219 @@
+// /**
+//  * Copyright © Magefan (support@magefan.com). All rights reserved.
+//  * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+// */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .block-product-link,
+    .block-category-link {
+        &.widget {
+            display: block;
+            margin-bottom: @indent__base;
+        }
+    }
+
+    .block-product-link-inline {
+        &.widget {
+            margin: 0;
+        }
+    }
+
+    .block.widget {
+        .products-grid {
+
+            .product-items {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 1rem;
+            }
+
+        }
+
+        .product-item-info {
+            width: auto;
+            padding: 1rem;
+        }
+
+        .pager {
+            padding: 0;
+
+            .toolbar-amount {
+                float: none;
+                .lib-font-size(12);
+            }
+
+            .pages-item-previous {
+                padding-left: 0;
+            }
+
+            .pages-item-next {
+                position: relative;
+            }
+
+            .items {
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+// (max-width: 639px)
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .sidebar .block-viewed-products-grid {
+        .products-grid {
+
+            .product-items {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 1rem;
+            }
+
+            .product-item-photo {
+                display: block;
+                position: relative;
+            }
+
+            .product-item-details {
+                margin: 0;
+            }
+
+            .product-item-info {
+                text-align: center;
+            }
+        }
+    }
+}
+
+// (min-width: 640px)
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+
+    .block.widget .products-grid,
+    .page-layout-1column .block.widget .products-grid,
+    .page-layout-3columns .block.widget .products-grid {
+        .product-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 1rem;
+        }
+    }
+
+    .page-layout-1column .block.widget .products-grid {
+
+        .product-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 1rem;
+        }
+
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+// (min-width: 769px)
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block.widget .products-grid {
+
+        .product-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 1rem;
+        }
+
+    }
+
+    .page-layout-1column .block.widget .products-grid {
+
+        .products-grid {
+            .product-items {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+            }
+        }
+
+    }
+
+    .page-layout-3columns .block.widget .products-grid {
+        .product-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+    }
+
+
+
+    .sidebar .block.widget .pager {
+        .item:not(.pages-item-next):not(.pages-item-previous) {
+            &:extend(.abs-no-display-desktop all);
+        }
+
+        .pages-item-next {
+            padding: 0;
+
+            .action {
+                margin: 0;
+            }
+        }
+    }
+}
+
+// (min-width: 1024px)
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .block.widget .products-grid {
+
+        .product-items {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+    }
+
+    .page-layout-1column .block.widget .products-grid {
+
+        .product-items {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+    }
+
+
+    .page-layout-3columns .block.widget .products-grid {
+
+        .product-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+    }
+
+    .block.widget .products-grid .product-items {
+        margin: 0;
+    }
+
+    .block.widget .products-grid {
+
+        .product-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 1rem;
+        }
+
+    }
+}

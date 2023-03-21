@@ -1,0 +1,17 @@
+<script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', (event) => {
+        if (document.querySelector('.ui-datepicker')) {
+            loadCss('<?= $block->getViewFileUrl('mage/calendar.css') ?>');
+        }
+    });
+
+    var loadCss = function (href) {
+        var link = document.createElement("link");
+        link.href = href;
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.media = "all";
+
+        document.getElementsByTagName("head")[0].appendChild(link);
+    }
+</script>

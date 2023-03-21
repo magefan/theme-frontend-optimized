@@ -1,0 +1,32 @@
+<?php
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\ProductVideo\Block\Product\View\Gallery
+ */
+?>
+
+<?php
+    $initProductVideo = false;
+
+    foreach (json_decode($block->getMediaGalleryDataJson(), true) as $data) {
+        if ($data['videoUrl']) {
+            $initProductVideo = true;
+            break;
+        }
+    }
+    ?>
+
+    <?php if ($initProductVideo) { ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-gallery-role=gallery-placeholder]": {
+                "Magento_ProductVideo/js/fotorama-add-video-events": {
+                    "videoData": <?= /* @noEscape */ $block->getMediaGalleryDataJson() ?>,
+                    "videoSettings": <?= /* @noEscape */ $block->getVideoSettingsJson() ?>,
+                    "optionsVideoData": <?= /* @noEscape */ $block->getOptionsMediaGalleryDataJson() ?>
+                }
+            }
+        }
+    </script>
+<?php } ?>

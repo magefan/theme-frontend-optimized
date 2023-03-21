@@ -1,0 +1,127 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+
+/** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+?>
+
+<div data-block="minicart" class="minicart-wrapper">
+    <a class="action showcart" id="tes" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>"
+       data-bind="scope: 'minicart_content_lazy'">
+        <span class="counter qty empty product-qty-in-cart" data-bind="css: { empty: !!summaryCount() == false}">
+            <span class="counter-number">
+                <!-- ko text: summaryCount ? summaryCount : 0  --><!-- /ko -->
+            </span>
+            <span class="counter-label">
+            <!-- ko if: summaryCount ? summaryCount : 0  -->
+            <!-- ko text: summaryCount ? summaryCount : 0  --><!-- /ko -->
+            <!-- ko i18n: 'items' --><!-- /ko -->
+            <!-- /ko -->
+            </span>
+        </span>
+    </a>
+    <?php if ($block->getIsNeedToDisplaySideBar()):?>
+        <div class="block block-minicart"
+             data-role="dropdownDialog"
+             data-mage-init-lazy='{"dropdownDialog":{
+                "appendTo":"[data-block=minicart]",
+                "triggerTarget":".showcart",
+                "timeout": "2000",
+                "closeOnMouseLeave": false,
+                "closeOnEscape": true,
+                "triggerClass":"active",
+                "parentClass":"active",
+                "buttons":[]}}'>
+            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <?= $block->getChildHtml('minicart.addons') ?>
+        </div>
+
+        <script type="text/javascript">
+            var initMinicart = function(event) {
+                event.preventDefault();
+
+                require(['jquery'], function ($) {
+
+                    let el = document.querySelector('.block.block-minicart');
+
+                    if (el.getAttribute('data-mage-init-lazy')) {
+                        el.setAttribute('data-mage-init', el.getAttribute('data-mage-init-lazy'));
+                        el.removeAttribute('data-mage-init-lazy');
+
+                        require(['mage/apply/main'], function (mage) {
+                            if (mage) {
+                                mage.apply();
+                            }
+                        });
+                    }
+
+
+                    if ($('[type="text/x-magento-init-minicart-lazy"]').length) {
+                        $('[type="text/x-magento-init-minicart-lazy"]').attr("type", "text/x-magento-init");
+                    }
+
+                    if ($('script[type="text/x-magento-init"]').length) {
+                        $('body').trigger('contentUpdated');
+
+                        var waitOnJs = setInterval(function() {
+                            if (require.s.contexts._.defined.hasOwnProperty('text!Magento_Checkout/template/minicart/content.html')) {
+                                clearInterval(waitOnJs);
+                                setTimeout(function () {
+                                    document.querySelector('a.showcart').click();
+                                }, 200);
+                            }
+                        }, 50);
+                    }
+                });
+            };
+
+            window.addEventListener('DOMContentLoaded', (event) => {
+                document.querySelector('a.showcart').addEventListener('click', initMinicart, {once:true});
+            });
+        </script>
+
+        <script type="text/x-magento-init-minicart-lazy">
+        {
+            "[data-block='minicart']": {
+                "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+            }
+        }
+    </script>
+
+    <?php else: ?>
+        <?php $scriptString = <<<script
+            require(['jquery'], function ($) {
+                $('a.action.showcart').on('click', function() {
+                    $(document.body).trigger('processStart');
+                });
+            });
+script;
+        ?>
+        <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false); ?>
+    <?php endif ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], 'window.checkout = ' .
+        /* @noEscape */ $block->getSerializedConfig(), false); ?>
+    <script type="text/x-magento-init">
+    {
+        ".product-qty-in-cart": {
+            "Magento_Ui/js/core/app":{
+                "components": {
+                    "minicart_content_lazy": {
+                        "component":"Magento_Checkout/js/productQtyInCart"
+                    }
+                }
+            }
+        },
+        "*": {
+            "Magento_Ui/js/block-loader": "<?= $block->escapeJs(
+            $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif'))
+        ) ?>"
+        }
+    }
+    </script>
+</div>

@@ -1,0 +1,49 @@
+// /**
+//  * Copyright © Magefan (support@magefan.com). All rights reserved.
+//  * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+// */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Using buttons mixins
+    button,
+    a.action.primary {
+        .lib-css(border-radius, @button__border-radius);
+        .lib-css(transition, all .2s ease);
+        &:hover {
+            .lib-css(transition, all .2s ease);
+        }
+    }
+
+    button {
+        &:active {
+            .lib-css(box-shadow, @button__shadow);
+        }
+    }
+
+    a.action.primary {
+        .lib-link-as-button();
+    }
+
+    .action.primary,
+    .action-primary {
+        .lib-button-primary();
+        .lib-css(transition, all .2s ease);
+        &:hover {
+            .lib-css(transition, all .2s ease);
+        }
+    }
+
+    .action {
+        &.continue {
+            .lib-css(transition, all .2s ease);
+            &:hover {
+                .lib-css(transition, all .2s ease);
+            }
+        }
+    }
+}

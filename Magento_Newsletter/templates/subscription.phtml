@@ -1,0 +1,55 @@
+<?php /*
+<div class="page-title-wrapper">
+    <h1 class="page-title"><?php echo __("Subscription") ?></h1>
+</div>
+*/ ?>
+<div class="login-container">
+    <div class="block block-customer-login">
+        <div class="block-content" aria-labelledby="block-customer-login-heading">
+            <form class="form form-login"
+                  action="<?= $block->getUrl('newsletter/subscriber/new') ?>"
+                  method="post"
+                  id="newsletter-validate-detail-page"
+                  data-mage-init='{"validation":{}}'>
+
+                <?= $block->getBlockHtml('formkey') ?>
+                <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+                    <div class="field note">
+                        <?= (__('Take <strong>5% off</strong> your next purchase and be the first to know about our special offers and latest product developments. We’ll keep you updated! <br/><br/><b>SIGN UP FOR OUR NEWSLETTER</b>')) ?>
+                    </div>
+                    <div class="field email required">
+                        <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                        <div class="control">
+                            <input name="email"   type="email" class="input-text" title="<?= $block->escapeHtmlAttr(__('Email')) ?>"  placeholder="Your Email Address" data-mage-init='{"validation": {"errorClass": "mage-error"}}' id="newsletter-validate-detail">
+                        </div>
+                    </div>
+                    <div class="actions-toolbar">
+                        <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Sign Up To Be The First!')) ?></span></button></div>
+                    </div>
+                </fieldset>
+                <style>
+                    .field-recaptcha {
+                        float: right;
+                    }
+                </style>
+                <?php
+                $rHtml = $block->getLayout()->createBlock(\Magento\ReCaptchaUi\Block\ReCaptcha::class, 'recaptcha-newsletter', [
+                    'data' => [
+                        'recaptcha_for' => 'newsletter',
+                        'jsLayout' => [
+                            'components' => [
+                                'recaptcha' => [
+                                    'component' => 'Magento_ReCaptchaFrontendUi/js/reCaptcha',
+                                    'zone' => 'create'
+                                ]
+                            ]
+                        ]
+                    ]
+                ])->setTemplate('Magento_ReCaptchaFrontendUi::recaptcha.phtml')->toHtml();
+
+                echo $rHtml;
+                ?>
+            </form>
+        </div>
+    </div>
+</div>
