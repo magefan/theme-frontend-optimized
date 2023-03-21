@@ -8,7 +8,8 @@
     "magefan/module-rocketjavascript" : ">=2.1.6",
     "magefan/module-translation": ">=2.1.10",
     "magefan/module-html-sitemap": ">=2.1.0",
-    "magefan/module-xml-sitemap": ">=2.0.0"
+    "magefan/module-xml-sitemap": ">=2.0.0",
+    "magefan/module-auto-related-product": ">=2.1.2"
   },
   "type": "magento2-theme",
   "config": {
