@@ -1,5 +1,5 @@
 {
-  "name": "magento/theme-frontend-optimized",
+  "name": "magefan/theme-frontend-optimized",
   "description": "Optimized Magento 2 Theme",
   "require": {
     "magefan/module-theme-optimized" : ">=2.0.0",
