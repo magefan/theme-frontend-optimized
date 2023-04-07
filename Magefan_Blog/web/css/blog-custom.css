@@ -1,4 +1,28 @@
-/* Blog Extra */
+body.blog-page {
+	--color-white: #ffffff;
+	--color-green: #28a745;
+	--color-yellow: #ffc107;
+	--color-blue: #4db2ec;
+	--color-black: #222222;
+	--color-gray: #bbbbbb;
+	--color-red: #dc3545;
+	--border-color: #d5d6da;
+	
+	/* for light theme */
+	/*--color-primary: #1a1a1a;*/
+	/*--color-primary-alt: f5f5f5;*/
+	/*--color-secondary: #ba933e;*/
+	--block-title-color: #222222;
+	
+	/* for dark theme */
+	/*--color-primary: #1b1b1b;*/
+	/*--color-primary-alt: #343434;*/
+	/*--color-secondary: #d23d43;*/
+	/*--block-title-color: #cdcdcd;*/
+}
+
+
+/* Blog Extra *********************************************************************************************************/
 [class^=mosaica] .block-title-wrap {line-height: 24px;}
 [class^=mosaica] .block-title-wrap h4 {padding: 7px 12px 5px;}
 [class^=mosaica] h3.post-title a {display: inline-block;padding: 0 7px;}
@@ -7,26 +31,57 @@
 [class^=template-] .block-title-wrap {line-height: 24px;}
 [class^=template-] .block-title-wrap h4 {padding: 7px 12px 5px;line-height: 16px;}
 [class^=template-] .post-info a {transition: all .2s ease;}
+/* END Blog Extra *****************************************************************************************************/
 
-/* Blog */
-.blog-post-view .post-bottom .block.related .block-title strong {padding-bottom: 3px;}
-.blog-post-view .post-list.modern .post-info .post-description a {color: var(--color-secondary);}
 
+
+/* Blog ***************************************************************************************************************/
+/* Block Title ******/
+.blog-post-view .post-bottom .block.related .block-title {border-color: var(--block-title-color);color: var(--block-title-color);}
+.blog-post-view .post-bottom .block.related .block-title strong {padding-bottom: 3px;border-color: var(--block-title-color);}
+/* Comments */
+.optimized-theme.blog-page .block.comments .c-count {border-color: var(--block-title-color);color: var(--block-title-color);}
+.optimized-theme.blog-page .block.comments .c-count strong {border-color: var(--block-title-color);}
+
+
+/* Blog Post View *****************************************************************************************************/
+/* Category */
+.blog-post-view .post-category a {display: inline-block;margin: 0 5px 0 0;padding: 5px 10px;background: #000;color: #fff;font-size: 11px;line-height: 12px;font-weight: 500;text-decoration: none;text-transform: uppercase;border: 1px solid #fff;transition: all .3s ease;}
+.blog-post-view .post-category a:hover {background: #555;transition: all .3s ease;}
+/* Post View */
+/*.blog-post-view .post-view-modern .mf-blog-icon.mfbi-views {background-image: none;}*/
+/*.blog-post-view .post-view-modern .mf-blog-icon.mfbi-views svg {fill: currentColor;}*/
+/* Post Comments */
+/*.blog-post-view .post-view-modern .mf-blog-icon.mfbi-comments {background-image: none;}*/
+/*.blog-post-view .post-view-modern .mf-blog-icon.mfbi-comments svg {fill: currentColor;}*/
+/* Tags */
+.blog-post-view .post-tag {margin-bottom: 20px;}
+.blog-post-view .post-tag .post-tag-title {border: 1px solid var(--border-color);}
+.blog-post-view .post-tag .post-tags a {color: #ffffff;background: #222;transition: all .3s ease;}
+.blog-post-view .post-tag .post-tags a.current,
+.blog-post-view .post-tag .post-tags a:hover {background: #555;color: #fff;transition: all .3s ease;}
+
+/* Post Navigation */
+.blog-post-view .post-nextprev .post-prev .nextprev-link {text-align: left;}
 
 /* Fix Related Products */
-/*.blog-post-view .mfblog-related-products-block .block-content {padding: 0;}*/
-/*.blog-post-view .mfblog-related-products-block .products-grid .product-items {display: grid;grid-template-columns: repeat(2, 1fr);gap: 1rem;margin: 0;}*/
-/*.blog-post-view .mfblog-related-products-block .products-grid .product-items .product-item {border: 1px solid transparent;transition: all .3s ease;}*/
-/*.blog-post-view .mfblog-related-products-block .products-grid .product-items .product-item.product-item-info {width: auto;}*/
-/*@media (min-width: 769px){*/
-/*	.blog-post-view .mfblog-related-products-block .products-grid .product-items {display: grid;grid-template-columns: repeat(3, 1fr);gap: 1rem;}*/
-/*}*/
-/*@media (min-width: 1024px){*/
-/*	.blog-post-view .mfblog-related-products-block .products-grid .product-items {display: grid;grid-template-columns: repeat(5, 1fr);gap: 1rem;}*/
-/*}*/
-/* END Fix Related Products */
+.blog-post-view .mfblog-related-products-block .block-content {padding: 0;}
+.blog-post-view .mfblog-related-products-block .products-grid .product-items {display: grid;grid-template-columns: repeat(2, 1fr);gap: 1rem;margin: 0;}
+.blog-post-view .mfblog-related-products-block .products-grid .product-items .product-item {width: 100%;border: 1px solid transparent;transition: all .3s ease;}
+.blog-post-view .mfblog-related-products-block .products-grid .product-items .product-item.product-item-info {width: auto;}
+@media (min-width: 769px){
+	.blog-post-view .mfblog-related-products-block .products-grid .product-items {display: grid;grid-template-columns: repeat(3, 1fr);gap: 1rem;}
+}
+@media (min-width: 1024px){
+	.blog-post-view .mfblog-related-products-block .products-grid .product-items {display: grid;grid-template-columns: repeat(5, 1fr);gap: 1rem;}
+}
+/* END Blog Post View *************************************************************************************************/
 
+
+/* Sidebar ************************************************************************************************************/
 /* Search Widget */
-/*.widget.blog-search .action.search {background: none;}*/
-/*.widget.blog-search .action.search:before {-webkit-font-smoothing: antialiased;content: '\e615';font-family: 'icons-blank-theme';font-size: 22px;line-height: 22px;color: #8f8f8f;font-weight: normal;margin: 0;vertical-align: top;display: inline-block;overflow: hidden;speak: none;width: 22px;height: 22px;opacity: 1;background-image: none;}*/
-/* Search Widget */
+.widget.blog-search .action.search {background: none;}
+.widget.blog-search .action.search:before {-webkit-font-smoothing: antialiased;content: '\e615';font-family: 'icons-blank-theme';font-size: 22px;line-height: 22px;color: #8f8f8f;font-weight: normal;margin: 0;vertical-align: top;display: inline-block;overflow: hidden;speak: none;width: 22px;height: 22px;opacity: 1;background-image: none;}
+.widget.blog-search .action.search:hover:before {}
+/* END Sidebar ********************************************************************************************************/
+/* END Blog ***********************************************************************************************************/
