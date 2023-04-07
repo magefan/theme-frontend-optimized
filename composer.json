@@ -3,7 +3,7 @@
   "description": "Optimized Magento 2 Theme",
   "require": {
     "magefan/module-theme-optimized" : ">=2.0.0",
-    "magefan/module-blog" : ">=2.10.12",
+    "magefan/module-blog" : ">=2.10.13",
     "magefan/module-lazyload" : ">=2.0.19",
     "magefan/module-rocketjavascript" : ">=2.1.6",
     "magefan/module-translation": ">=2.1.10",
@@ -15,7 +15,7 @@
   "config": {
     "sort-packages": true
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "autoload": {
     "files": [
       "registration.php"
