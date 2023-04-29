@@ -31,7 +31,6 @@
         </referenceContainer>
 
         <referenceContainer name="before.body.end">
-            <block name="magefan.fonts" template="Magento_Theme::fonts.phtml" />
             <block name="magefan.css.manager" template="Magento_Theme::css_manager.phtml" />
         </referenceContainer>
 
