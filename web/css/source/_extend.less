@@ -81,7 +81,7 @@ input:-webkit-autofill:active {
 
 //@rating-icon__color: @color-gray78;
 //@rating-icon__active__color: @active__color;
-@rating-icon__active__color: #ff5501;
+@rating-icon__active__color: #F8D44C;
 
 
 
@@ -120,8 +120,10 @@ input:-webkit-autofill:active {
         .lib-icon-font(
             @_icon-font-content: '',
             @_icon-font-size: 29px,
-            @_icon-font-color: @icon_color,
-            @_icon-font-color-hover: @icon_color,
+            //@_icon-font-color: @icon_color,
+            //@_icon-font-color-hover: @icon_color,
+            @_icon-font-color: @theme__color__primary,
+            @_icon-font-color-hover: @theme__color__primary,
             @_icon-font-text-hide: true,
             @_icon-font-vertical-align: middle,
             @_icon-font-line-height: 24px
@@ -149,6 +151,29 @@ input:-webkit-autofill:active {
 }
 
 
+//
+//  Product link
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+    .abs-product-link {
+        font-weight: @font-weight__semibold;
+
+        > a {
+            .lib-link(
+                @_link-color: @product-name-link__color,
+                @_link-text-decoration: @product-name-link__text-decoration,
+                @_link-color-visited: @product-name-link__color__visited,
+                @_link-text-decoration-visited: @product-name-link__text-decoration__visited,
+                @_link-color-hover: @product-name-link__color__hover,
+                @_link-text-decoration-hover: @product-name-link__text-decoration__hover,
+                @_link-color-active: @product-name-link__color__active,
+                @_link-text-decoration-active: @product-name-link__text-decoration__active
+            );
+        }
+    }
+}
+
 
 
 //  Product Items
@@ -165,7 +190,7 @@ input:-webkit-autofill:active {
                 border: 1px solid @product_items_border_color;
                 transition: all .3s ease;
                 background: @product_items_bg_color;
-                padding: 1rem;
+                //padding: 1rem;
                 box-sizing: border-box;
                 &:hover {
                     border: 1px solid @product_items_border_color_hover;
@@ -321,17 +346,18 @@ input:-webkit-autofill:active {
                 row-gap: 10px;
                 .product-item-photo {}
                 .product-item-details {
-                    height: 100%;
+                    //height: 100%;
                     .lib-vendor-prefix-display(flex);
                     .lib-vendor-prefix-flex-direction(column);
                     .lib-vendor-prefix-flex-grow(1);
                     .product-item-inner {
-                        display: flex;
-                        flex-grow: 1;
-                        margin-top: auto;
+                        //display: flex;
+                        //flex-grow: 1;
+                        //margin-top: auto;
                         .product-item-actions {
                             flex-grow: 1;
-                            margin-top: auto;
+                            //margin-top: auto;
+                            margin-top: 15px;
                             margin-bottom: 0;
                         }
                         .product-item-description {
@@ -340,6 +366,75 @@ input:-webkit-autofill:active {
                     }
                 }
             }
+        }
+    }
+}
+
+
+
+
+
+// Product Item
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+    .products-grid {
+        .product-items {
+            .product-item {
+                .product-item-info {
+                    position: relative;
+                    overflow: hidden;
+                    border: 1px solid @product_items_border_color;
+                    padding-bottom: 60px;
+                    .product-item-photo {
+                        z-index: 1;
+                    }
+                    .product-item-details {
+                        position: absolute;
+                        top: 100%;
+                        z-index: 2;
+                        width: 100%;
+                        background: #fff;
+                        transition: transform .3s ease-in-out;
+                        transform: translateY(-60px);
+                        padding: 12px 12px;
+                        box-sizing: border-box;
+                        .product-item-name {
+                            margin: 0;
+                        }
+                        .price-box {
+                            margin: 0 0 5px 0;
+                        }
+                    }
+                }
+                &:hover .product-item-details {
+                    transform: translateY(-100%);
+                }
+                .swatch-option {
+                    //border: 1px solid #dadada;
+                    //cursor: pointer;
+                    //float: left;
+                    //height: 20px;
+                    //margin: 0 10px 5px 0;
+                    //max-width: 100%;
+                    //min-width: 20px;
+                    //overflow: hidden;
+                    //padding: 1px 2px;
+                    //position: relative;
+                    //text-align: center;
+                    //text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+}
+
+// Summary
+.product-reviews-summary {
+    margin-bottom: 20px;
+    .reviews-actions {
+        a {
+            color: @theme__color__secondary;
         }
     }
 }
@@ -472,7 +567,7 @@ input:-webkit-autofill:active {
     .abs-products-grid-wishlist-align {
         .product-items {
             .product-item-inner {
-                margin-top: auto;
+                //margin-top: auto;
                 .box-tocart {
                     > fieldset {
                         .lib-vendor-prefix-display(flex);
@@ -498,7 +593,7 @@ input:-webkit-autofill:active {
     .abs-products-grid-wishlist-align {
         .product-items {
             .product-item-inner {
-                margin-top: auto;
+                //margin-top: auto;
                 .box-tocart {
                     > fieldset {
                         .lib-vendor-prefix-display(flex);
@@ -520,7 +615,7 @@ input:-webkit-autofill:active {
     .abs-products-grid-wishlist-align {
         .product-items {
             .product-item-inner {
-                margin-top: auto;
+                //margin-top: auto;
                 .box-tocart {
                     > fieldset {
                         .lib-vendor-prefix-display(flex);
