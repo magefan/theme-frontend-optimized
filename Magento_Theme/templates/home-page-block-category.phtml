@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+<script type="module">
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.esm.browser.min.js';
+
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: false,
+        slidesPerView: 4,
+        spaceBetween: 20,
+        grabCursor: true,
+
+        // If we need pagination
+        pagination: false,
+
+        // Navigation arrows
+        navigation: false,
+
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+
+        breakpoints: {
+            // < 644px
+            "@0.00": {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            // 645px < 858px
+            "@0.75": {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            // 859px < 1288px
+            "@1.00": {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            "@1.50": {
+                slidesPerView: 4,
+                spaceBetween: 20,
+            },
+        },
+    });
+</script>
