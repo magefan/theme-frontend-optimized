@@ -1,0 +1,120 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .product.data.items {
+        .lib-data-accordion();
+            margin-bottom: @indent__base
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .product.data.items {
+        //&:extend(.abs-data-tabs all);
+
+        .lib-data-tabs(
+            @_tab-control-font-weight: @font-weight__bold,
+            @_tab-control-font-size: 1.6rem,
+            @_tab-control-background-color: transparent,
+            @_tab-control-background-color-hover: transparent,
+            @_tab-control-background-color-active: transparent,
+            @_tab-control-padding-bottom: 14px,
+            @_tab-control-border-width: 0,
+
+            @_tab-content-background-color: transparent,
+            @_tab-content-margin-top: 38px,
+            @_tab-content-padding-top: 20px,
+            @_tab-content-padding-right: 0,
+            @_tab-content-padding-bottom: 0,
+            @_tab-content-padding-left: 0
+        );
+
+        > .item.title {
+
+            > .switch {
+                border: none;
+                position: relative;
+
+                &:after {
+                    content: '';
+                    background: @theme__color__secondary;
+                    height: 3px;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    .lib-css(transition, all .2s ease);
+                    width: 100%;
+                    .lib-css(transform, scale(0,1));
+                    .lib-css(backface-visibility, hidden);
+                }
+            }
+
+            &:not(.disabled) > .switch:focus,
+            &:not(.disabled) > .switch:hover {
+                &:after {
+                    width: 100%;
+                    .lib-css(transform, scale(1,1));
+                }
+            }
+
+            &:not(.disabled) > .switch:active,
+            &.active > .switch,
+            &.active > .switch:focus,
+            &.active > .switch:hover {
+                padding: 5px 20px 14px 20px;
+                &:after {
+                    width: 100%;
+                    .lib-css(transform, scale(1,1));
+                }
+            }
+        }
+
+        > .item.content {
+            border-width: 1px 0 0 0;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .product.data.items {
+        .lib-data-accordion();
+        //&:extend(.abs-data-tabs all);
+
+        .data.item {
+            display: block;
+        }
+
+        .item.title {
+
+            > .switch {
+                padding: 1px 15px 1px;
+            }
+
+            &:not(.disabled) > .switch:active,
+            &.active > .switch,
+            &.active > .switch:focus,
+            &.active > .switch:hover {
+                padding-bottom: 0;
+            }
+        }
+
+        > .item.content {
+            padding: 10px 15px 30px;
+        }
+    }
+}

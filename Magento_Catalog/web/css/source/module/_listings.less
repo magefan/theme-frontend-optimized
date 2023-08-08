@@ -50,7 +50,7 @@
         }
 
         &-item {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             vertical-align: top;
             // border-radius: @product_items_border_radius;
 
@@ -142,6 +142,7 @@
 
                 .price-label {
                     font-size: @font-size__s;
+                    .lib-visually-hidden();
 
                     &:after {
                         content: ':';
@@ -230,14 +231,6 @@
         grid-template-columns: repeat(auto-fill, minmax(calc((100% - (10px * (2 - 1))) / 2), 1fr));
         grid-gap: 10px;
 
-        // Product Grid
-        //.products-grid & {
-        //    grid-template-columns: repeat(2, 1fr);
-        //    .product-item-info {
-        //        .lib-vendor-prefix-display(flex);
-        //        .lib-vendor-prefix-flex-direction(column);
-        //    }
-        //}
 
         // Product List
         .products-list & {
