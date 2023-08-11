@@ -140,13 +140,20 @@ input:-webkit-autofill:active {
     .abs-remove-button-for-blocks {
         .lib-icon-font(
             @icon-remove,
-            @_icon-font-size: 26px,
-            @_icon-font-line-height: 15px,
+            @_icon-font-size: 22px,
+            @_icon-font-line-height: 18px,
             @_icon-font-text-hide: true,
             @_icon-font-color: @icon_color,
             @_icon-font-color-hover: @icon_color_hover,
             @_icon-font-color-active: @icon_color_hover
         );
+        &:before {
+            width: 18px;
+            height: 18px;
+            text-indent: -2px;
+            border-radius: 50%;
+            background-color: @theme__color__primary-alt;
+        }
     }
 }
 
@@ -371,8 +378,6 @@ input:-webkit-autofill:active {
         }
     }
 }
-
-
 
 
 
@@ -1024,15 +1029,7 @@ input:-webkit-autofill:active {
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    //.modal-custom,
-    //.modal-popup,
-    //.modal-slide {
-    //    .action-close {
-    //        .lib-css(margin, 0);
-    //    }
-    //}
-}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {}
 
 
 
@@ -1083,9 +1080,6 @@ input:-webkit-autofill:active {
         }
     }
 }
-
-
-
 
 
 & when (@media-common = true) {
@@ -1496,7 +1490,79 @@ input:-webkit-autofill:active {
 }
 
 
-// Optimized Theme Icons
+
+//
+//  Abstract block title
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+    .abs-block-title {
+        margin-bottom: 15px;
+
+        > strong {
+            font-weight: @font-weight__bold;
+            font-size: @font-size__m;
+        }
+    }
+}
+
+
+//
+//  Items counter in blocks
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+    .abs-block-items-counter {
+        .lib-css(color, @button-primary__color);
+        .lib-font-size(14px);
+        font-weight: @font-weight__bold;
+        white-space: nowrap;
+        display: inline-block;
+        float: right;
+        width: 28px;
+        height: 28px;
+        line-height: 30px;
+        border-radius: 50%;
+        background: @theme__color__secondary;
+        text-align: center;
+    }
+}
+
+
+//
+//  Abstract block - style
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+    .abs-block-style {
+        .block {
+            padding: 14px;
+            border: 1px solid @border-color__base;
+        }
+    }
+}
+
+.sidebar.sidebar-additional {
+    .block {
+        padding: 14px;
+        border: 1px solid @border-color__base;
+        .actions-toolbar {
+            > .primary .action {
+                line-height: 1.6rem;
+            }
+
+            > .secondary .action {
+                line-height: 1.6rem;
+                color: @theme__color__secondary;
+                font-weight: @font-weight__semibold;
+            }
+        }
+    }
+}
+
+
+
+    // Optimized Theme Icons
 //  ---------------------------------------------
 .oti:before {font-weight: normal;font-style: normal;}
 .oti-18px.oti-set, .oti-18px.oti:before{font-size:18px}

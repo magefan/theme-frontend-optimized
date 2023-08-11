@@ -9,25 +9,15 @@
 
 & when (@media-common = true) {
     .pages {
-        .lib-pager(
-            @_pager-item-padding: 0 12px,
-            @_pager-item-margin: 2px,
-            @_pager-background-hover: @theme__color__primary-alt,
-            @_pager-actions-padding: 0,
-            @_pager-border: 1px solid transparent,
-            @_pager-border-hover: 1px solid @border-color__base,
-            @_pager-current-border: 1px solid @border-color__base,
-            @_pager-current-color: @icon-font__color-hover,
-            @_pager-color: @icon-font__color,
-            @_pager-color-hover: @icon-font__color-hover,
-            @_pager-color-active: @icon-font__color-hover,
-            @_pager-color-visited: @icon-font__color,
-            @_pager-action-color: @border-color__base,
-            @_pager-action-color-hover: @icon-font__color-hover,
-            @_pager-action-color-visited: @border-color__base,
-            @_pager-action-color-active: @icon-font__color-hover,
-            @_pager-action-background-hover: @theme__color__primary-alt
-        );
+        .lib-pager();
+
+        .items {
+            white-space: normal;
+        }
+
+        .page {
+            border-radius: 50%;
+        }
 
         a.page {
             .lib-css(transition, all .2s ease);
@@ -37,12 +27,21 @@
         }
 
         .action {
-            width: 34px;
+            width: 65px;
             &.previous {
-                margin-right: 2px;
+                margin-right: 0;
             }
+
             &.next {
-                margin-left: 2px;
+                margin-left: 0;
+            }
+
+            .label + span {
+                .lib-visually-hidden();
+            }
+
+            svg {
+                color: @theme__color__secondary;
             }
         }
     }

@@ -131,17 +131,21 @@
 
                 .lib-icon-font(
                 @_icon-font-content: @icon-down,
-                @_icon-font-size: 24px,
+                @_icon-font-size: 28px,
+                @_icon-font-line-height: 20px,
                 @_icon-font-position: after,
                 @_icon-font-display: block
                 );
 
                 &:after {
                     position: absolute;
-                    right: 0;
+                    right: 14px;
                     top: 12px;
-                    line-height: 18px;
-                    .lib-font-size(30);
+                    width: 18px;
+                    height: 18px;
+                    text-indent: -5px;
+                    border-radius: 50%;
+                    background-color: @theme__color__primary-alt;
                 }
 
                 &:hover {
