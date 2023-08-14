@@ -29,13 +29,12 @@
             </container>
         </referenceContainer>
 
-<!--        <referenceContainer name="product.info.price"></referenceContainer>-->
 
         <move element="product.info.review.stock.sku" destination="product.info.main" after="page.main.title" />
         <move element="product.info.review" destination="product.info.review.stock.sku" before="-" />
         <move element="product.info.type" destination="product.info.stock.sku" before="-" />
         <move element="product.info.sku" destination="product.info.stock.sku" after="-" />
-        <move element="product.info.price" destination="product.info.form.options" after="product.info.options.wrapper" />
+<!--        <move element="product.info.price" destination="product.info.form.options" after="product.info.options.wrapper" />-->
 
     </body>
 </page>
