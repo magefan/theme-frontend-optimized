@@ -654,6 +654,14 @@
                     width: auto;
                 }
             }
+
+            .actions-toolbar > .primary {
+                float: right;
+                .action {
+                    color: @theme__color__secondary;
+                    font-weight: @font-weight__semibold;
+                }
+            }
         }
 
         .block-compare {
@@ -1039,6 +1047,9 @@
 
         .counter {
             &:extend(.abs-block-items-counter all);
+            &.no-display {
+                &:extend(.abs-no-display all);
+            }
         }
 
         .actions-toolbar {

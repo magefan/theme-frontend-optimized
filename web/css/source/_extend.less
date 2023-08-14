@@ -385,7 +385,7 @@ input:-webkit-autofill:active {
 //  ---------------------------------------------
 
 & when (@media-common = true) {
-    .products-grid:not(.products-related):not(.products-upsell) {
+    .products-grid:not(.products-related):not(.products-upsell):not(.wishlist) {
         .product-items {
             .product-item {
                 .product-item-info {
@@ -415,6 +415,10 @@ input:-webkit-autofill:active {
                         }
                         .price-box {
                             margin: 0 0 5px 0;
+                            .lib-css(display, flex);
+                            .special-price {
+                                margin-right: 5px;
+                            }
                         }
                     }
                 }
