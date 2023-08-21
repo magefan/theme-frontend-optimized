@@ -254,18 +254,19 @@
 
         .product-info-price {
             padding-bottom: 30px;
+            margin: 0 0 @indent__base  0;
             border-bottom: @table__border-width @table__border-style @table__border-color;
         }
 
-        .product-options-bottom {
-            .lib-vendor-prefix-display(flex);
-            .lib-vendor-box-align(flex-end);
-            .lib-vendor-prefix-flex-wrap (wrap);
-            //gap: 20px;
-            //padding: 20px 0;
-            padding: 0;
-            margin: 0;
+        .product-options-wrapper + .price-box {
+            padding-bottom: 30px;
         }
+        .product-options-bottom {
+            padding: 20px 0;
+            margin: 0;
+            border-top: @table__border-width @table__border-style @table__border-color;
+        }
+
     }
 
     .product-options-wrapper {
@@ -326,10 +327,10 @@
                 //.lib-font-size(12);
                 //line-height: 14px;
                 //margin-bottom: @indent__xs;
-                .lib-font-size(34);
+                .lib-font-size(24);
                 font-weight: @font-weight__regular;
 
-                .price-label {
+            body:not(.page-product-bundle) & .price-label {
                     //font-size: @font-size__m;
                     //.lib-css(color, @attr-swatch-option__color);
                     //font-weight: @font-weight__bold;
@@ -381,12 +382,14 @@
         .old-price {
             .lib-font-size(30);
             color: @old_price_color;
-            text-decoration-thickness: 2px;
+            text-decoration: none;
             .price-wrapper {
                 .price {
                     .lib-font-size(30);
                     line-height: 3rem;
                     //color: @old_price_color;
+                    text-decoration: line-through;
+                    text-decoration-thickness: 2px;
                 }
             }
         }
@@ -403,6 +406,8 @@
         .box-tocart {
             margin: @indent__base @indent__base @indent__base 0;
             //margin: 0;
+            display: inline-block;
+            vertical-align: top;
 
             .fieldset {
                 .lib-vendor-prefix-display(flex);
@@ -489,9 +494,11 @@
 
         // Social Links
         .product-social-links {
-            margin: 0 0 @indent__base  0;
+            //margin: 0 0 @indent__base  0;
+            margin: @indent__base 0 @indent__base 0;
             //&:extend(.abs-actions-addto-links all);
             &:extend(.abs-actions-addto-links-icon all);
+            display: inline-block;
         }
 
     }
@@ -528,6 +535,55 @@
             //margin: 0 @indent__xs;
         }
     }
+
+
+    //
+    //  Semple Product
+    //  ---------------------------------------------
+    //.catalog-product-view {
+    //    .product-info-main {
+            //.product-info-price {
+            //    margin: 0 0 @indent__base  0;
+            //}
+    //    }
+    //}
+
+
+    //
+    //  Bundle Product
+    //  ---------------------------------------------
+    .page-product-bundle {
+        .product-info-main {
+            .price-box {
+                .lib-css(display, flex);
+                .lib-vendor-box-align(center);
+                .lib-vendor-prefix-flex-wrap (wrap);
+
+                p {
+                    margin: 0 @indent__s 0 0;
+                }
+            }
+
+            //.bundle-actions {
+            //    display: inline-block;
+            //    vertical-align: top;
+            //}
+        }
+    }
+
+
+
+    //
+    //  Configurable Product
+    //  ---------------------------------------------
+    //.page-product-configurable {
+    //    .product-info-main {
+    //        .product-options-bottom {
+    //
+    //        }
+    //    }
+    //}
+
 
     //
     // QTY Grouped Product
@@ -741,6 +797,7 @@
 
         .product.media {
             .lib-vendor-prefix-order(-1);
+            margin-bottom: @indent__m;
         }
     }
 
@@ -860,15 +917,15 @@
 
     .product.media {
         float: left;
-        margin-bottom: @indent__m;
+        margin-bottom: @indent__xl;
     }
 
     .page-layout-1column {
         .product-info-main {
             width: 46%;
+            margin-bottom: @indent__xl;
         }
         .product.media {
-            //width: 57%;
             width: 50%;
         }
     }
