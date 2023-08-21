@@ -42,7 +42,7 @@
             &:extend(.abs-products-grid-align all);
         }
     }
-    
+
     .product {
         &-items {
             font-size: 0;
@@ -142,6 +142,7 @@
 
                 .price-label {
                     font-size: @font-size__s;
+                    .lib-visually-hidden();
 
                     &:after {
                         content: ':';
@@ -209,7 +210,7 @@
 
             .price-from,
             .price-to {
-                margin: 0;
+                margin: 0 5px 0 0;
             }
 
             .tocompare {
@@ -230,14 +231,6 @@
         grid-template-columns: repeat(auto-fill, minmax(calc((100% - (10px * (2 - 1))) / 2), 1fr));
         grid-gap: 10px;
 
-        // Product Grid
-        //.products-grid & {
-        //    grid-template-columns: repeat(2, 1fr);
-        //    .product-item-info {
-        //        .lib-vendor-prefix-display(flex);
-        //        .lib-vendor-prefix-flex-direction(column);
-        //    }
-        //}
 
         // Product List
         .products-list & {
@@ -458,3 +451,4 @@
         }
     }
 }
+

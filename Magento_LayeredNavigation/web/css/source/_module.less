@@ -68,7 +68,8 @@
             }
 
             .item {
-                padding-left: 17px;
+                //padding-left: 17px;
+                padding-left: 10px;
                 position: relative;
                 z-index: 1;
             }
@@ -81,7 +82,7 @@
 
             .action.remove {
                 &:extend(.abs-remove-button-for-blocks all);
-                left: -2px;
+                right: 6px;
                 position: absolute;
                 top: -1px;
             }
@@ -110,7 +111,7 @@
 
             &-item {
                 border-bottom: @border-width__base solid @border-color__base;
-                padding-bottom: @indent__s;
+                //padding-bottom: @indent__s;
                 &.active {
                     display: block;
                 }
@@ -124,24 +125,29 @@
                 font-weight: @font-weight__semibold;
                 margin: 0;
                 overflow: hidden;
-                padding: @indent__s @indent__s + 30px 0 @indent__s;
+                //padding: @indent__s @indent__s + 30px 0 @indent__s;
+                padding: @indent__s;
                 position: relative;
                 word-break: break-all;
                 z-index: 1;
 
                 .lib-icon-font(
                 @_icon-font-content: @icon-down,
-                @_icon-font-size: 24px,
+                @_icon-font-size: 28px,
+                @_icon-font-line-height: 24px,
                 @_icon-font-position: after,
                 @_icon-font-display: block
                 );
 
                 &:after {
                     position: absolute;
-                    right: 0;
+                    right: 14px;
                     top: 12px;
-                    line-height: 18px;
-                    .lib-font-size(30);
+                    width: 22px;
+                    height: 22px;
+                    text-indent: -3px;
+                    border-radius: 50%;
+                    background-color: @theme__color__primary-alt;
                 }
 
                 &:hover {
@@ -149,6 +155,8 @@
                 }
 
                 .active > & {
+                    background: @navigation__background;
+
                     .lib-icon-font-symbol(
                         @_icon-font-content: @icon-up,
                         @_icon-font-position: after
@@ -157,6 +165,7 @@
             }
 
             &-content {
+                background: @header_panel_wrapper;
                 margin: 0;
                 padding: @indent__s;
                 display: none;

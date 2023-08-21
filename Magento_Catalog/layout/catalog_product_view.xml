@@ -19,9 +19,18 @@
         <referenceBlock name="breadcrumbs" template="Magento_Theme::html/breadcrumbs.phtml" />
         <!-- end return old breadcrumbs -->
 
-
         <move element="page.main.title" destination="product.info.main" before="product.info.price" />
-        <move element="product.info.social" destination="product.info.options.wrapper.bottom" after="product.info.addtocart.additional" />
-        <!-- <move element="product.info.description" destination="product.info.main" after="-" /> -->
+
+        <referenceContainer name="product.info.main">
+            <container name="product.info.review.stock.sku" label="Product info review stock sku" htmlTag="div" htmlClass="product-info-review-stock-sku">
+                <container name="product.info.stock.sku" label="Product info stock sku" htmlTag="div" htmlClass="product-info-stock-sku" />
+            </container>
+        </referenceContainer>
+
+        <move element="product.info.review.stock.sku" destination="product.info.main" after="page.main.title" />
+        <move element="product.info.review" destination="product.info.review.stock.sku" before="-" />
+        <move element="product.info.type" destination="product.info.stock.sku" before="-" />
+        <move element="product.info.sku" destination="product.info.stock.sku" after="-" />
+
     </body>
 </page>

@@ -41,6 +41,7 @@
         <referenceBlock name="form.subscribe" remove="true"/>
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
+        <referenceBlock name="header" remove="true"/>
         <!-- Move -->
         <move element="copyright" destination="before.body.end"/>
 
