@@ -22,15 +22,15 @@ Additionally, you can benefit from the 5 ready-to-use colour schemas to change e
 
 ## Editions & Pricing
   
-<a href="https://magefan.com/magento-2-google-tag-manager/pricing">
+<a href="https://magefan.com/optimized-magento-2-theme/pricing">
           <img
-            src="https://cm.magefan.com/wysiwyg/products/magento-google-tag-manager-pricing.png"
-            alt="Editions and Pricing for Magento 2 Google Tag Manager" />
+            src="https://cm.magefan.com/wysiwyg/products/magento-2-theme-pricing.png"
+            alt="Plans and Pricing for Optimized Magento 2 Theme" />
         </a>
-<a href="https://magefan.com/magento-2-google-tag-manager/pricing">
+<a href="https://magefan.com/optimized-magento-2-theme/pricing">
           <img
-            src="https://cm.magefan.com/wysiwyg/products/google-tag-manager-extension-pricing.png"
-            alt="Editions and Pricing for Magento 2 Google Tag Manager" />
+            src="https://cm.magefan.com/wysiwyg/products/magento-theme-pricing.png"
+            alt="Plans and Pricing for Optimized Magento 2 Theme" />
         </a>
         
 ## Benefits
