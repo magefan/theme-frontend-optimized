@@ -1,4 +1,4 @@
-# Magento 2 Theme Optimized  by Magefan
+# [Magento 2 Theme Optimized](https://magefan.com/optimized-magento-2-theme) by Magefan
 
 [![Total Downloads](https://poser.pugx.org/magefan/theme-frontend-optimized/downloads)](https://packagist.org/packages/magefan/theme-frontend-optimized)
 [![Latest Stable Version](https://poser.pugx.org/magefan/theme-frontend-optimized/v/stable)](https://packagist.org/packages/magefan/theme-frontend-optimized)
@@ -9,16 +9,14 @@
 
 <img align="right" width="120" height="120" src="https://cm.magefan.com/catalog/product/cache/28b407cef1668fd0bdd6f36db3e8e2f0/i/c/icon-optimized_1.jpg">
 
-[Optimized Magento 2 Theme](https://magefan.com/optimized-magento-2-theme) from Magefan is a speed-optimized theme for Magento that offers you seamless website performance and best SEO practices. No more long breadcrumbs, product gallery, breadcrumbs, or mini car JS loading. This theme for Magento 2 covers every speed-related element and makes it faster. 
+[Magento 2 Theme Optimized](https://magefan.com/optimized-magento-2-theme) from Magefan is a speed-optimized theme for Magento that offers you seamless website performance and best SEO practices. No more long breadcrumbs, product gallery, breadcrumbs, or mini car JS loading. This theme for Magento 2 covers every speed-related element and makes it faster. 
 
 Additionally, you can benefit from the 5 ready-to-use colour schemas to change every element on your website and in-built premium Magento 2 Extensions.
 
 <a href="https://magefan.com/optimized-magento-2-theme"><img width="190" height="70" src="https://magefan.com/media/wysiwyg/download-now_1.png"></a>
 
 ## Requirements
-  * Magento Community 2.3.0-2.4.x (CE, EE, ECE, B2B)
-  * [Magefan Community Extension](https://github.com/magefan/module-community) >= v2.1.13. Please install this extension first if you use installation via FTP.
-  * **Note** that extension is free only for the Magento Community (Open Source) Edition. For Magento EE, ECE, B2B you need to purchase the license at magefan.com.
+  * Magento 2.3.0-2.4.x (CE, EE, ECE, B2B)
 
 ## Editions & Pricing
   
@@ -50,7 +48,7 @@ We’ve optimized every element that could slow down your website loading 一 fo
 Getting to the PageSpeedInsights green zone is easier now!
 
 <p align="center">
-  <img width="853" height="425" src="https://cm.magefan.com/catalog/magento-2-google-tag-manager-extension.png">
+  <img width="853" height="425" src="https://cm.magefan.com/catalog/magento-2-theme.png">
 </p>
 
 
@@ -58,17 +56,18 @@ Getting to the PageSpeedInsights green zone is easier now!
 
 Surprise your customers not only with the rocket-fast theme but a stunning design. Choosing and changing the colour for your catalogue buttons, menus, links, etc. is not a problem now. 
 
-Optimized Magento 2 Theme comes with 5 preset color schemas that allow you you change your store colors in minutes. You can choose between silver, black, green, blue and red colour palettes or develop your own style with customizable colour options. 
+Magento 2 Theme Optimized comes with 5 preset color schemas that allow you you change your store colors in minutes. You can choose between silver, black, green, blue and red colour palettes or develop your own style with customizable colour options. 
+
+<p align="center">
+  <img width="853" height="425" src="https://cm.magefan.com/catalog/magento-theme-color-schema.png">
+</p>
 
 * **Get a Stunning Magento 2 SEO Theme**
 
 Not even the fastest websites are good enough without SEO. That’s why we’ve gathered all the best SEO-ranking factors in one place 一 fast-loading websites, rich snippets, meta robots, OG, hreflang tags, cross-links, keyword optimization, canonicals and much more. 
 
-Just download the Optimized Magento 2 Theme, and configure your website SEO with the extensive guides we offer to improve your store visibility and ranking in search.
+Just download the Magento 2 Theme Optimized, and configure your website SEO with the extensive guides we offer to improve your store visibility and ranking in search.
 
-* **Satisfy Visitors from All Devices**
-
-Be sure each step in the customer's journey will be a pleasure, regardless of the device they use. Magefan Theme for Magento 2 is fast, SEO-optimized and super responsive to ensure a great experience for all your website visitors.
 
 * **Use Modern Images Format - WebP**
 
@@ -76,36 +75,57 @@ No speed optimization today is possible if you don’t pay attention to images. 
 
 Add image lazy load and you get an image optimization combo that never disappoints. Guess what? We’ve added both.
 
+<p align="center">
+  <img width="853" height="425" src="https://cm.magefan.com/catalog/webp-images-in-magento-2.png">
+</p>
+
 * **Optimize Product Pages**
 
 Organized, easy-to-navigate and "clean" product pages lead to improved sales while poorly designed pages, cluttered with content do the opposite. That’s why you need to make sure your product pages are not only attractive but user-friendly. 
 
 One way to do this is using product tabs. They help you to include all important information on the product pages without stuffing it. Plus, you can tailor them to different products, categories or customer groups.
 
+
+* **Satisfy Visitors from All Devices**
+
+Be sure each step in the customer's journey will be a pleasure, regardless of the device they use. Magefan Theme for Magento 2 is fast, SEO-optimized and super responsive to ensure a great experience for all your website visitors.
+
+<p align="center">
+  <img width="853" height="425" src="https://cm.magefan.com/catalog/responsive-magento-2-theme.png">
+</p>
+
 * **Improve Checkout Experience**
 
 Checkout is the last step in the customer's journey and has to be perfect for customers to finalise it. While it’s hard to guess what exactly leads to cart abandonment, you can try to do the most in your power to improve checkout. 
 
-We offer you to use the Optimized Magento 2 Theme to provide a simple, two-step checkout with “clean” forms, attractive payment methods icons and a simplified checkout process.
+We offer you to use the Magento 2 Theme Optimized to provide a simple, two-step checkout with “clean” forms, attractive payment methods icons and a simplified checkout process.
 
 * **Boost Sales with Automatic Related Products**
 
 What do you do when a product customer initially lands on is not exactly what they seek? You offer them something different as an alternative. However, adding related products, cross-sells and up-sells on mere intuition won’t yield the expected results. You need to work smarter. 
 
-Magento 2 Theme from Magefan comes with the Auto Related Products Extension that helps you optimize the process. You can create custom related product rules and display related products based on product and cart attributes, on both catalogues and CMS pages. 
+Magento 2 Theme Optimized from Magefan comes with the Auto Related Products Extension that helps you optimize the process. You can create custom related product rules and display related products based on product and cart attributes, on both catalogues and CMS pages. 
+
+<p align="center">
+  <img width="853" height="425" src="https://cm.magefan.com/catalog/magento-2-related-products_1.png">
+</p>
 
 * **Improve Your Content Strategy**
 
 Content is kind and it’s not going to change any time soon. So, while you improve your store pages, it’s also important to come up with a more expensive content strategy and start blogging. 
 Not only is it the best way to drive organic tracking, but a way to win customers' loyalty and develop a community around your brand. 
 
-Use Magento 2 Theme to provide a faster, more targeted and content-rich website that covers customers' needs.
+Use Magento 2 Theme Optimized to provide a faster, more targeted and content-rich website that covers customers' needs.
 
 * **Offer Personalized Experience**
 
 Personalized experience can do wonders for your sales, not only when you provide related products. You can also show some content like banners and entire CMS pages based on customer groups. 
 
 Each customer has unique needs that need to be covered. Create different CMS blocks/pages visible per certain customer groups and offer each a unique experience. 
+
+<p align="center">
+  <img width="853" height="425" src="https://cm.magefan.com/catalog/cms-display-rules-magento-2.png">
+</p>
 
 * **Translate Your Website to Multiple Languages**
 
