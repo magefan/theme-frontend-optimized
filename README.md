@@ -13,7 +13,7 @@
 
 Additionally, you can benefit from the 5 ready-to-use colour schemas to change every element on your website and in-built premium Magento 2 Extensions.
 
-<a href="https://magefan.com/optimized-magento-2-theme"><img width="190" height="70" src="https://magefan.com/media/wysiwyg/download-now_1.png"></a>
+<a href="https://magefan.com/optimized-magento-2-theme"><img width="190" height="70" src="https://cm.magefan.com/wysiwyg/products/download-magefan-extensions.png"></a><a href="https://magefan.com/optimized-magento-2-theme#live-demo"><img width="190" height="70" src="https://cm.magefan.com/wysiwyg/products/magefan-live-demo.png"></a>
 
 ## Requirements
   * Magento 2.3.0-2.4.x (CE, EE, ECE, B2B)
