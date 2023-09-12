@@ -3,7 +3,7 @@
  * Copyright © Magefan (support@magefan.com). All rights reserved.
  * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
  */
- 
+
 /**
  * Product media data template
  *
@@ -12,6 +12,7 @@
 ?>
 
 <?php
+
 $images = $block->getGalleryImages()->getItems();
 $mainImage = current(array_filter($images, function ($img) use ($block) {
     return $block->isMainImage($img);
@@ -30,80 +31,46 @@ $galleryOptionsJson = $block->getGalleryOptions()->getOptionsJson();
 
 $galleryOptions = json_decode($galleryOptionsJson, true);
 
+$thumbsCount = 6;
 $width = $galleryOptions['width'];
 $height = $galleryOptions['height'];
 
+$thumbheight = $galleryOptions['thumbheight'] ?? 90;
+$thumbwidth = $galleryOptions['thumbwidth'] ?? 90;
+$thumbsDirection = $block->getGalleryHelper()->getThumbsDirection();
+
+if ($thumbsDirection == 'vertical') {
+    $galleryOptions['navdir'] = 'vertical';
+    $thumbsCount = ceil($height/$thumbheight);
+} else {
+    $galleryOptions['navdir'] = 'horizontal';
+    $thumbsCount = ceil($width/$thumbwidth);
+}
+
+$galleryOptionsJson = json_encode($galleryOptions);
 ?>
-
-<style>
-    /*.product-options-wrapper {
-        display: none;
-    }*/
-</style>
-
-<!--<style>-->
-<!--    .gallery-placeholder img {-->
-<!--        width: 100%;-->
-<!--        height: auto;-->
-<!--        aspect-ratio: attr(width) / attr(height);-->
-<!--    }-->
-<!--</style>-->
-
 
 <link rel="preload" as="image" href="<?= $mainImageData ?>">
 
-<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+<div class="gallery-placeholder _block-content-loading <?= $thumbsDirection ?>" data-gallery-role="gallery-placeholder" style="overflow: hidden;">
     <img
-            alt="main product photo"
-            class="gallery-placeholder__image"
-            src="<?= /* @noEscape */ $mainImageData ?>"
-            height="<?= $height ?>" width="<?= $width ?>"
+        alt="main product photo"
+        class="gallery-placeholder__image"
+        src="<?= /* @noEscape */ $mainImageData ?>"
+        height="<?= $height ?>" width="<?= $width ?>"
     />
 
     <?php if (count($images) > 1) {
-        $thumbs = [];
-        $j = 1;
-
-        foreach (json_decode($block->getGalleryImagesJson(), true) as $thumbImages) {
-            if ($j > 4 ) {
-                break;
-            }
-
-            $j++;
-
-            $webPUrl = $thumbImages['thumb'];
-            $alt = $thumbImages['caption'];
-
-            if (strpos($webPUrl, 'mf_webp') === false) {
-                $thumbs[] = $thumbImages['thumb'];
-                continue;
-            }
-
-            $array = explode('/', $webPUrl);
-            $imageFormat = '';
-
-            for ($i = 0; $i < count($array); $i++) {
-                if ($array[$i] == "mf_webp") {
-                    $imageFormat = $array[$i + 1];
-                    array_splice($array, $i, 3);
-                    break;
-                }
-            }
-
-            $imageUrl = implode('/', $array);
-
-            $thumbs[] = str_replace('.webp', '.' . $imageFormat, $imageUrl);
-        }
-
+        $thumbs = $block->getGalleryHelper()->getPreparedThumbs($block->getGalleryImagesJson(), $thumbsCount);
         ?>
-        <div id="thumb-preloaded" class="fotorama__nav-wrap fotorama__nav-wrap--horizontal " data-gallery-role="nav-wrap" style="margin-top: 5px; display: none;">
-            <div class="fotorama__nav fotorama__nav--thumbs " style="height: 94px; width: 100%; margin: 0;" >
+        <div id="thumb-preloaded" class="fotorama__nav-wrap fotorama__nav-wrap--<?= $thumbsDirection ?>" data-gallery-role="nav-wrap" style="margin-top: 5px; display: none;">
+            <div class="fotorama__nav fotorama__nav--thumbs " style="height: <?= $thumbheight + 4 ?>px; width: 100%; margin: 0;" >
                 <div class="fotorama__nav__shaft">
-                    <div class="fotorama__thumb-border" style="width: 90px; height:90px" ></div>
+                    <div class="fotorama__thumb-border" style="width:<?= $thumbwidth ?>px; height:<?= $thumbheight ?>px" ></div>
                     <?php $id = 0; foreach ($thumbs as $thumb) { ?>
-                        <div style="height: 90px; width: 90px; padding-right: 2px;" class="fotorama__nav__frame fotorama__nav__frame--thumb fotorama__active " tabindex="0" role="button" data-gallery-role="nav-frame" data-nav-type="thumb" data-active="true"  >
-                            <div id="thumb-lazy-<?= $id ?>" class="fotorama__thumb fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img " >
-                                <img width="90" height="90" src="<?= $thumb ?>" alt="<?= $alt ?>" class="fotorama__img " aria-hidden="false">
+                        <div style="height: <?= $thumbheight ?>px; width: <?= $thumbwidth ?>px; padding-right: 2px; padding-bottom: 2px;" class="fotorama__nav__frame fotorama__nav__frame--thumb fotorama__active <?= ($thumb['videoUrl']) ? ' video-thumb-icon ' : '' ?>" tabindex="0" role="button" data-gallery-role="nav-frame" data-nav-type="thumb" data-active="true">
+                            <div id="thumb-lazy-<?= $id ?>" class="fotorama__thumb fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img">
+                                <img width="<?= $thumbwidth ?>" height="<?= $thumbheight ?>" src="<?= $thumb['src'] ?>" alt="<?= $thumb['alt'] ?>" class="fotorama__img" aria-hidden="false">
                             </div>
                         </div>
                         <?php $id++;} ?>
@@ -111,7 +78,7 @@ $height = $galleryOptions['height'];
             </div>
         </div>
 
-        <div id="thumb-preloaded-dots" class="fotorama__nav-wrap fotorama__nav-wrap--horizontal" data-gallery-role="nav-wrap" style="margin-top:10px; display: none;">
+        <div id="thumb-preloaded-dots" class="fotorama__nav-wrap fotorama__nav-wrap--<?= $thumbsDirection ?>" data-gallery-role="nav-wrap" style="margin-top:10px; display: none;">
             <div class="fotorama__nav fotorama__nav--dots" style="height: auto; width: 100%;">
                 <div class="fotorama__nav__shaft">
                     <div class="fotorama__nav__frame fotorama__nav__frame--dot fotorama__active" data-active="true">
@@ -138,7 +105,7 @@ $height = $galleryOptions['height'];
                 "data": <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
                 "options": <?= /* @noEscape */ $galleryOptionsJson ?>,
                 "fullscreen": <?= /* @noEscape */ $block->getGalleryOptions()->getFSOptionsJson() ?>,
-                 "breakpoints": <?= /* @noEscape */ $block->getBreakpoints() ?>
+                "breakpoints": <?= /* @noEscape */ $block->getBreakpoints() ?>
             }
         }
     }
@@ -160,40 +127,27 @@ $height = $galleryOptions['height'];
                 'position': position
             };
 
-            console.log({initEventObject})
-
             require(['jquery'], function ($) {
                 $('[data-gallery-role=gallery-placeholder]').on('gallery:loaded', function () {
                     $('#thumb-preloaded, #thumb-preloaded-dots').remove();
 
-                    console.log('loaded');
-                    console.log({e});
-
                     if (e != 'none') {
                         var api = $(this).data('gallery');
 
-                        console.log({initEventObject});
                         if (initEventObject.position) {
-                            console.log('swipe');
                             if (initEventObject.position == 'next') {
                                 api.next();
                             } else {
                                 api.prev();
                             }
                         } else {
-                            console.log('click');
-
                             setTimeout(function () {
                                 if (initEventObject.event.target.classList.contains('gallery-placeholder__image')) {
                                     api.fotorama.requestFullScreen();
-                                    console.log('full screan')
                                 } else {
                                     if (initEventObject.event.target.classList.contains('fotorama__dot')) {
-                                        console.log('dot')
-                                        console.log(initEventObject.event.target.getAttribute('dot-index'));
                                         api.seek(parseInt(initEventObject.event.target.getAttribute('dot-index')) + 1);
                                     } else {
-                                        console.log('bug')
                                         api.next();
                                     }
                                 }
@@ -237,8 +191,6 @@ $height = $galleryOptions['height'];
         let pageWidth = gestureZone.offsetWidth || document.body.clientWidth;
         let treshold = Math.max(1,Math.floor(0.05 * (pageWidth)));
 
-        console.log(treshold);
-
         let touchstartX = 0;
         let touchstartY = 0;
         let touchendX = 0;
@@ -248,13 +200,11 @@ $height = $galleryOptions['height'];
         gestureZone.addEventListener('touchend', passTouchendEvent, {passive : true});
 
         function passTouchstartEvent(event) {
-            console.log('touchstart');
             touchstartX = event.changedTouches[0].screenX;
             touchstartY = event.changedTouches[0].screenY;
         }
 
         function passTouchendEvent(event) {
-            console.log('touchend');
             touchendX = event.changedTouches[0].screenX;
             touchendY = event.changedTouches[0].screenY;
             handleGesture(event);
@@ -264,24 +214,18 @@ $height = $galleryOptions['height'];
             let x = touchendX - touchstartX;
             let y = touchendY - touchstartY;
 
-            console.log({x});
-            console.log({y});
-
             if (Math.abs(x) > treshold && Math.abs(x) > Math.abs(y)) {
                 gestureZone.removeEventListener('touchstart', passTouchstartEvent);
                 gestureZone.removeEventListener('touchend', passTouchendEvent);
 
                 if (x < 0) {
                     initGallery(e,'next');
-                    console.log("left");
                 } else {
                     initGallery(e,'prev');
-                    console.log("right");
                 }
             } else {
                 // we will suppose that this is click
                 if (Math.abs(x) < 5 && Math.abs(y) < 5) {
-                    console.log('else')
                     gestureZone.removeEventListener('touchstart', passTouchstartEvent);
                     gestureZone.removeEventListener('touchend', passTouchendEvent);
                     initGallery(e,false);
@@ -298,5 +242,11 @@ $height = $galleryOptions['height'];
 
     @media only screen and (min-width: 768px) {
         #thumb-preloaded {display: block !important;}
+
+        .gallery-placeholder._block-content-loading.vertical .gallery-placeholder__image {
+            margin-left: <?=$thumbwidth?>px;
+            width: calc(100% - <?=$thumbwidth?>px);
+            padding-top: 40px;
+        }
     }
 </style>

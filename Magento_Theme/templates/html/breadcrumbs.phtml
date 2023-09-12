@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+?>
+<?php if ($crumbs && is_array($crumbs)) : ?>
+<?php
+    end($crumbs);
+    $secondLastElement = prev($crumbs);
+?>
+<div class="breadcrumbs">
+	<div class="container">
+	    <div class="inner-breadcrumbs">
+		<ul class="items desktop">
+			<?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+				<li class="item <?php /* @escapeNotVerified */ echo $crumbName ?>">
+				<?php if ($crumbInfo['link']) : ?>
+					<a href="<?php /* @escapeNotVerified */ echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>">
+						<?php echo $block->escapeHtml($crumbInfo['label']) ?>
+					</a>
+				<?php elseif ($crumbInfo['last']) : ?>
+					<strong><?php echo $block->escapeHtml($crumbInfo['label']) ?></strong>
+				<?php else: ?>
+					<?php echo $block->escapeHtml($crumbInfo['label']) ?>
+				<?php endif; ?>
+				</li>
+			<?php endforeach; ?>
+            <li class="item second-last-element-mobile">
+                <a href="<?php /* @escapeNotVerified */ echo $secondLastElement['link'] ?>" title="<?= $block->escapeHtml($secondLastElement['title']) ?>">
+                    <?=  $block->escapeHtml($secondLastElement['label']) ?>
+                </a>
+            </li>
+		</ul>
+		</div>
+	</div>
+</div>
+<?php endif; ?>
