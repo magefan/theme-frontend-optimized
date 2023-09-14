@@ -19,3 +19,23 @@
         }
     }
 }
+
+//  (max-width: 768px)
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .breadcrumbs {
+        .item {
+            &:last-child {
+                display: inline-block;
+                text-decoration: none;
+                padding: 0;
+                .lib-icon-font(
+                    @icon-prev,
+                    @_icon-font-size: 26px
+                );
+            }
+            &:not(:last-child) {
+                display: none;
+            }
+        }
+    }
+}
