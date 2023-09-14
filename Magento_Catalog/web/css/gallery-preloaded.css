@@ -165,3 +165,9 @@
 	display: block;
 	margin: auto;
 }
+
+@media only screen and (min-width: 768px) {
+    .gallery-placeholder._block-content-loading.vertical .fotorama__nav-wrap--vertical.fotorama__nav-wrap {display: inline-block;left: 0;position: absolute;top: 0;}
+    .gallery-placeholder._block-content-loading.vertical .fotorama__nav.fotorama__nav--thumbs {height: 100% !important;}
+    .gallery-placeholder._block-content-loading.vertical .fotorama__nav__frame {display: block;}
+}
