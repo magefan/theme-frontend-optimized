@@ -436,17 +436,22 @@
     .page-products {
         &.page-layout-1column {
             .products-grid {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                grid-gap: 1rem;
+                .product-items {
+                    display: grid;
+                    grid-template-columns: repeat(5, 1fr);
+                    grid-gap: 1rem;
+                }
+                
             }
         }
 
         &.page-layout-3columns {
             .products-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-gap: 1rem;
+                .product-items {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-gap: 1rem;
+                }
             }
         }
     }
