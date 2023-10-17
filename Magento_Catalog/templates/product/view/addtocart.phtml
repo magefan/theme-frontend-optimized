@@ -40,7 +40,7 @@
     </div>
 </div>
 <?php endif; ?>
-<script type="text/x-magento-init">
+<script type="text/x-magento-init-lazy" element="#product_addtocart_form">
     {
         "#product_addtocart_form": {
             "Magento_Catalog/js/validate-product": {}
@@ -48,6 +48,23 @@
     }
 </script>
 <script>
+
+    function initAddForm() {
+        let addFormInit = document.querySelector('[element="#product_addtocart_form"]');
+
+        if (addFormInit) {
+            addFormInit.setAttribute("type", "text/x-magento-init");
+
+            require(['mage/apply/main'], function (mage) {
+                if (mage) {
+                    mage.apply('[element="#product_addtocart_form"]');
+                }
+            });
+        }
+    }
+
+    document.querySelector('#product_addtocart_form').addEventListener('mouseover', initAddForm, {once: true});
+
     function mfQtyInc() {
         var q = document.getElementById('qty');
         if (q) {
