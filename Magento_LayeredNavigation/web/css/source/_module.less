@@ -155,7 +155,8 @@
                 }
 
                 .active > & {
-                    background: @navigation__background;
+                    //background: @navigation__background;
+                    background: @filter-title-bg-color-active;
 
                     .lib-icon-font-symbol(
                         @_icon-font-content: @icon-up,
@@ -165,7 +166,7 @@
             }
 
             &-content {
-                background: @header_panel_wrapper;
+                background: @filter-content-bg-color;
                 margin: 0;
                 padding: @indent__s;
                 display: none;
@@ -178,13 +179,16 @@
                 a {
                     display: block;
                     //.lib-css(color, @filter-link);
+                    color: @filter-content-item-color;
                     margin-left: -5px;
                     margin-right: -5px;
                     padding-left: 5px;
                     padding-right: 7px;
+                    background: @filter-content-item-bg-color;
 
                     &:hover {
-                        //background-color: @color-gray91;
+                        color: @filter-content-item-color-hover;
+                        background: @filter-content-item-bg-hover;
                         text-decoration: none;
 
                         & + .count {
