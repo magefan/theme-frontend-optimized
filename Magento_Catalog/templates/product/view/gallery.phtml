@@ -129,7 +129,7 @@ $galleryOptionsJson = json_encode($galleryOptions);
 
             require(['jquery'], function ($) {
                 $('[data-gallery-role=gallery-placeholder]').on('gallery:loaded', function () {
-                    $('#thumb-preloaded, #thumb-preloaded-dots').remove();
+                    $('#thumb-preloaded, #thumb-preloaded-dots, .gallery-placeholder__image').remove();
 
                     if (e != 'none') {
                         var api = $(this).data('gallery');
