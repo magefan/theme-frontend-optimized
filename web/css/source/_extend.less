@@ -366,7 +366,7 @@ input:-webkit-autofill:active {
                         .product-item-actions {
                             flex-grow: 1;
                             //margin-top: auto;
-                            margin-top: 15px;
+                            margin-top: 5px;
                             margin-bottom: 0;
                         }
                         .product-item-description {
@@ -412,6 +412,10 @@ input:-webkit-autofill:active {
                         box-sizing: border-box;
                         .product-item-name {
                             margin: 0;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            .product-item-link {}
                         }
                         .price-box {
                             margin: 0 0 5px 0;
@@ -434,11 +438,25 @@ input:-webkit-autofill:active {
 }
 
 // Summary
-.product-reviews-summary {
-    margin-bottom: 10px;
-    .reviews-actions {
-        a {
-            color: @theme__color__secondary;
+& when (@media-common = true) {
+    .product-reviews-summary {
+
+        &.short.empty {
+            .rating-summary {
+                .rating-result {
+                    position: relative;
+                    height: 28px;
+                    &:before {
+                        opacity: 0.5;
+                    }
+                }
+            }
+        }
+
+        .reviews-actions {
+            a {
+                color: @theme__color__secondary;
+            }
         }
     }
 }
