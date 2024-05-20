@@ -3,7 +3,7 @@
   "description": "Optimized Magento 2 Theme",
   "require": {
     "magefan/module-theme-optimized" : "2.0.6",
-    "magefan/module-blog" : ">=2.11.3.1",
+    "magefan/module-blog" : ">=2.11.3",
     "magefan/module-lazyload" : ">=2.1.4",
     "magefan/module-rocketjavascript" : ">=2.1.9",
     "magefan/module-translation": ">=2.2.9",
