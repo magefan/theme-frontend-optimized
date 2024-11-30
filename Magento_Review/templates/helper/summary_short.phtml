@@ -1,0 +1,64 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Review\Block\Product\ReviewRenderer $block */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+
+$url = $block->getReviewsUrl() . '#reviews';
+$urlForm = $block->getReviewsUrl() . '#review-form';
+
+$displayIfEmpty = $block->getDisplayIfEmpty();
+$listPage = in_array($block->getRequest()->getFullActionName(), ['cms_index_index', 'catalogsearch_result_index', 'catalog_category_view']);
+
+if ($listPage) {
+    $displayIfEmpty = true;
+}
+//if ($block->getRequest()->getActionName())
+
+?>
+<?php if ($block->isReviewEnabled() && $block->getReviewsCount()): ?>
+    <?php $rating = $block->getRatingSummary(); ?>
+    <div class="product-reviews-summary short<?= !$rating ? ' no-rating' : '' ?>">
+        <?php if ($rating):?>
+        <div class="rating-summary">
+            <span class="label"><span><?= $block->escapeHtml(__('Rating')) ?>:</span></span>
+            <div class="rating-result"
+                 id="rating-result_<?= /* @noEscape */ $block->getProduct()->getId() ?>"
+                 title="<?= $block->escapeHtmlAttr($rating) ?>%">
+                <span><span><?= $block->escapeHtml($rating) ?>%</span></span>
+            </div>
+            <?= /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                'width:' . $block->escapeHtmlAttr($rating) . '%',
+                '#rating-result_' . $block->getProduct()->getId() . ' span'
+            ) ?>
+        </div>
+        <?php endif;?>
+        <div class="reviews-actions">
+            <a class="action view"
+               href="<?= $block->escapeUrl($url) ?>"><?= $block->escapeHtml($block->getReviewsCount()) ?>
+                &nbsp;<span><?= ($block->getReviewsCount() == 1) ?
+                        $block->escapeHtml(__('Review')) : $block->escapeHtml(__('Reviews')) ?>
+                </span>
+            </a>
+        </div>
+    </div>
+<?php elseif ($block->isReviewEnabled() && $displayIfEmpty): ?>
+    <div class="product-reviews-summary short empty">
+        <div class="rating-summary">
+            <div class="rating-result"></div>
+        </div>
+        <div class="reviews-actions">
+            <?php if ($listPage) { ?>
+                <span></span>
+            <?php } else { ?>
+            <a class="action add" href="<?= $block->escapeUrl($urlForm) ?>">
+                <?= $block->escapeHtml(__('Be the first to review this product')) ?>
+            </a>
+            <?php } ?>
+        </div>
+    </div>
+<?php endif; ?>
+
