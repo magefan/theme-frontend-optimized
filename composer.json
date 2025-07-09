@@ -2,22 +2,22 @@
   "name": "magefan/theme-frontend-optimized",
   "description": "Optimized Magento 2 Theme",
   "require": {
-    "magefan/module-theme-optimized" : "2.0.6",
-    "magefan/module-blog" : ">=2.11.3",
-    "magefan/module-lazyload" : ">=2.1.4",
-    "magefan/module-rocketjavascript" : ">=2.1.9",
-    "magefan/module-translation": ">=2.2.9",
-    "magefan/module-html-sitemap": ">=2.2.0",
-    "magefan/module-xml-sitemap": ">=2.0.1",
-    "magefan/module-auto-related-product": ">=2.3.1",
-    "magefan/module-google-tag-manager": ">=2.5.7",
-    "magefan/module-facebook-pixel": ">=2.6.1"
+    "magefan/module-theme-optimized" : "2.0.7",
+    "magefan/module-blog" : ">=2.13.1",
+    "magefan/module-lazyload" : ">=2.1.6",
+    "magefan/module-rocketjavascript" : ">=2.2.2",
+    "magefan/module-translation": ">=2.3.7",
+    "magefan/module-html-sitemap": ">=2.3.0",
+    "magefan/module-xml-sitemap": ">=2.1.0",
+    "magefan/module-auto-related-product": ">=2.4.4",
+    "magefan/module-google-tag-manager": ">=2.6.10",
+    "magefan/module-facebook-pixel": ">=2.6.9"
   },
   "type": "magento2-theme",
   "config": {
     "sort-packages": true
   },
-  "version": "2.0.6",
+  "version": "2.0.7",
   "autoload": {
     "files": [
       "registration.php"
