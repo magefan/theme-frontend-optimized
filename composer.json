@@ -6,7 +6,6 @@
     "magefan/module-blog" : ">=2.13.1",
     "magefan/module-lazyload" : ">=2.1.6",
     "magefan/module-rocketjavascript" : ">=2.2.2",
-    "magefan/module-translation": ">=2.3.7",
     "magefan/module-xml-sitemap": ">=2.1.0",
     "magefan/module-auto-related-product": ">=2.4.4",
     "magefan/module-google-tag-manager": ">=2.6.10",
