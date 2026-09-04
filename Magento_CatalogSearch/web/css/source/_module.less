@@ -216,7 +216,8 @@
         .control {
             border-top: 0;
             margin: 0;
-            padding: 0 0 25px;
+            //padding: 0 0 25px;
+            padding: 0;
         }
 
         .nested {
@@ -243,7 +244,8 @@
             padding: @indent__xs 0;
             position: absolute;
             right: 10px;
-            top: 0;
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 1;
 
             &:hover,
